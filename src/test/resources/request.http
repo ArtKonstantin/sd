@@ -1,0 +1,105 @@
+### Admin получает список всех пользователей
+GET http://localhost:8080/users.getAll?limit=50&offset=0
+X-Login: admin
+X-Password: secret
+
+### Получение пользователей по id
+GET http://localhost:8080/users.getById?id=3
+
+### Admin регистрирует нового пользователя Client
+GET http://localhost:8080/users.register?login=anya&password=secret&role=CLIENT
+X-Login: admin
+X-Password: secret
+
+### Admin регистрирует нового пользователя Engineer
+GET http://localhost:8080/users.register?login=vanya&password=secret&role=ENGINEER
+X-Login: admin
+X-Password: secret
+
+### Получение информации о себе
+GET http://localhost:8080/users.me
+X-Login: anya
+X-Password: secret
+
+### Admin может удалить любого пользователя
+GET http://localhost:8080/users.removeById?id=2
+X-Login: admin
+X-Password: secret
+
+### Admin может восстановить любого пользователя
+GET http://localhost:8080/users.restoreById?id=2
+X-Login: admin
+X-Password: secret
+
+### Admin получает список всех заявок
+GET http://localhost:8080/tickets.getAll?limit=50&offset=0
+X-Login: admin
+X-Password: secret
+
+### Получение информации о заявке по id
+GET http://localhost:8080/tickets.getById?id=2
+
+### Загрузка скриншота ошибки
+POST http://localhost:8080/media/uploadData
+Content-Type: image/png
+X-Login: anya
+X-Password: secret
+
+< ./img.png
+
+> {% client.global.set("image", response.body.path); %}
+
+### Client регистрирует новую заявку
+GET http://localhost:8080/tickets.create?description=Синий экран&file={{image}}
+X-Login: anya
+X-Password: secret
+
+### Engineer берет заявку в работу
+GET http://localhost:8080/tickets.updateAccepted?id=6&sla_id=1
+X-Login: vanya
+X-Password: secret
+
+### Engineer закрывает заявку
+GET http://localhost:8080/tickets.updateDecided?id=6&solution=Перезарузка
+X-Login: vanya
+X-Password: secret
+
+### Admin кладет заявку в архив
+GET http://localhost:8080/tickets.updateArchivedById?id=5
+X-Login: admin
+X-Password: secret
+
+### Admin получает список всех заявок по типу sla
+GET http://localhost:8080/tickets.selectByTypeSla?sla_id=1&limit=50&offset=0
+X-Login: admin
+X-Password: secret
+
+### Admin получает список всех заявок в работе
+GET http://localhost:8080/tickets.selectAcceptedAll?limit=50&offset=0
+X-Login: admin
+X-Password: secret
+
+### Admin получает количество решенных заявок по инженерам
+GET http://localhost:8080/tickets.selectDecided?limit=50&offset=0
+X-Login: admin
+X-Password: secret
+
+### Admin получает список просроченных заявок по sla
+GET http://localhost:8080/tickets.selectOverdue?limit=50&offset=0
+X-Login: admin
+X-Password: secret
+
+### Admin получает Resolution Rate
+GET http://localhost:8080/tickets.resolutionRate
+X-Login: admin
+X-Password: secret
+
+### Client ставит оценку выполненному тикету
+GET http://localhost:8080/votes.make?id=1&rating=5
+X-Login: anya
+X-Password: secret
+
+### Admin получает список рейтингов по инженерам
+GET http://localhost:8080/votes.stats?limit=50&offset=0
+X-Login: admin
+X-Password: secret
