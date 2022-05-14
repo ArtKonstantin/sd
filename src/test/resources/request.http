@@ -7,7 +7,7 @@ X-Password: secret
 GET http://localhost:8080/users.getById?id=3
 
 ### Admin регистрирует нового пользователя Client
-GET http://localhost:8080/users.register?login=anya&password=secret&role=CLIENT
+GET http://localhost:8080/users.register?login=sergey&password=secret&role=CLIENT
 X-Login: admin
 X-Password: secret
 
@@ -55,17 +55,17 @@ X-Login: anya
 X-Password: secret
 
 ### Engineer берет заявку в работу
-GET http://localhost:8080/tickets.updateAccepted?id=6&sla_id=1
+GET http://localhost:8080/tickets.updateAccepted?id=9&sla_id=1
 X-Login: vanya
 X-Password: secret
 
 ### Engineer закрывает заявку
-GET http://localhost:8080/tickets.updateDecided?id=6&solution=Перезарузка
+GET http://localhost:8080/tickets.updateDecided?id=8&solution=Перезарузка
 X-Login: vanya
 X-Password: secret
 
 ### Admin кладет заявку в архив
-GET http://localhost:8080/tickets.updateArchivedById?id=5
+GET http://localhost:8080/tickets.updateArchivedById?id=8
 X-Login: admin
 X-Password: secret
 
@@ -95,7 +95,7 @@ X-Login: admin
 X-Password: secret
 
 ### Client ставит оценку выполненному тикету
-GET http://localhost:8080/votes.make?id=1&rating=5
+GET http://localhost:8080/votes.make?id=8&rating=5
 X-Login: anya
 X-Password: secret
 
